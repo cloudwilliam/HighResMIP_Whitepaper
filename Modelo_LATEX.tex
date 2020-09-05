@@ -1,0 +1,366 @@
+\documentclass[11pt]{article}
+%\usepackage[latin1]{inputenc}
+\usepackage[utf8]{inputenc}
+\usepackage{amsfonts}
+\usepackage{infocomp}
+\usepackage{times}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[T1]{fontenc}
+\usepackage{multirow}
+\usepackage{graphicx}
+%\usepackage[hidelinks]{hyperref}
+\usepackage{subfigure}
+\usepackage{enumerate}
+\usepackage{caption}
+\usepackage{color}
+\usepackage{hyperref}
+\usepackage{tikz}
+\usetikzlibrary{shapes,arrows}
+\usepackage{xcolor, soul}
+\usepackage{ifthen}
+
+%\usepackage[sort]{cite}
+%\usepackage[alf]{abntcite} % tamb\'{e}m deu certo
+%\usepackage[alf,abnt-and-type=e,abnt-full-initials=no,abnt-last-names=abnt,abnt-etal-list=0,abnt-etal-text=it]{abntcite}
+%\usepackage[alf,abnt-repeated-title-omit=yes,abnt-show-options=warn]{abntcite}%cita\c{c}\~{a}o abntex
+
+%\usepackage[alf,abnt-repeated-author-omit=yes,abnt-etal-list=5]{abntex2cite}	% CitaÃ§Ãµes padrÃ£o ABNT
+\usepackage{lineno}
+\nolinenumbers
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%\usepackage[bottom=1cm,top=5cm,left=5cm,right=0cm]{geometry}
+
+\usepackage{times}
+\usepackage{fancyhdr}
+
+%\setcounter{page}{28}
+
+\fancyhead{ }
+\lhead{}
+%\chead{\footnotesize TÍTULO EM MAIÙSCULAS}
+\rhead{}
+\cfoot{\textit{UQ-Enhanced Analysis of Weather Extremes in HighResMIP}}
+\rfoot{\thepage}%Direita do Rodapé
+\renewcommand{\headrulewidth}{0pt}% Traço horizontal no cabeçalho
+%\setlength \FHoffset{3cm}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%
+%\usepackage{rangecite}
+
+%\hyphenation{po-pu-la-ri-za-ção re-gis-tros do-mi-na-do-ra vio-la pe-ram-bu-lam dou-tri-na-ria-men-te co-nhe-ce-rem Ad-mis-tra-ção fa-bri-car so-cie-da-de in-fe-rio-res vee-men-te-men-te si-tua-ção pon-tuais}
+
+\sloppy
+\renewcommand{\captionfont}{\footnotesize}
+\renewcommand{\captionlabelfont}{\footnotesize \bfseries}
+
+\newboolean{draft}
+\setboolean{draft}{false}
+\newcommand{\tbd}[1]{\ifthenelse{\boolean{draft}}{{\color{red} #1}}{}}
+\title{UQ-Enhanced Analysis of Weather Extremes in CMIP6 High-Resolution Model Intercomparison Project (HighResMIP)}
+
+\address{
+%$^{1,2}$Instituição \\ \emph{Campus} ou departamento ou programa de pós\\ email@email.com.br, ~ email@email.com
+}
+
+%\title{Model for Articles to INFOCOMP}
+
+\author{Bill Collins, Deb Agarwal, Travis O'Brien, Shreyas Cholia, and Michael Wehner
+       % Autor 1 $^1$ \\
+      %  Autor 2 etc.$^2$
+}
+
+
+% Se o artigo for em língua ingles desmarque o título abaixo
+%\title{TÍTULO DO ARTIGO COMPLETO EM LÍNGUA ESTRANGEIRA PARA PUBLICAÇÃO NA REVISTA CONEXÕES: CIENCIA E TECNOLOGIA DO INSTITUTO FEDERAL DO CEARÁ - IFCE }
+
+%\selectlanguage{english}
+
+\abstract{The goal is to perform a comprehensive analysis of the High Resolution Model Intercomparison (HighResMIP) from CMIP6, with the analysis focusing on characterizing high-impact weather features including hurricanes, cyclones, and atmospheric rivers.  We propose using both conventional tracking algorithms as well as machine-learning algorithms to follow the genesis and evolution of these storms.  We would include a comprehensive parametric uncertainty quantification as part of this analysis.}
+
+\keywords{HighResMIP, TECA, CMIP6, parametric and structural uncertainty of extremes}
+
+
+
+
+%\receivedate{July 19th, 2011}
+
+%\acceptdate{September 1st, 2011}
+
+\begin{document}
+
+\pagestyle{fancy} % CABECALHOO
+
+\maketitle
+\onecolumn
+\begin{center}
+\textbf{DESCRIPTION OF AND RESOURCES REQUIRED FOR THE PROJECT}
+\end{center}
+\section{Overview}
+\label{sec:Overview}
+%\tbd{Hi there!}
+This document concerns the potential project that we discussed at BERAC in November 2017.   The goal is to perform a comprehensive analysis of the High Resolution Model Intercomparison (HighResMIP) from CMIP6, with the analysis focusing on characterizing high-impact weather features including hurricanes, cyclones, and atmospheric rivers.  We propose using both conventional tracking algorithms as well as machine-learning algorithms to follow the genesis and evolution of these storms.  We would include a comprehensive parametric and structural uncertainty quantification as part of this analysis.
+We would both publish the results of our first-of-its-kind analysis and would distribute the tracking data to the global climate-analysis community.
+
+HighResMIP %\footnote{\url{http://collab.knmi.nl/project/highresmip/}} 
+is one of the CMIP6-Endorsed MIPs \cite{Eyring16}
+%\footnote{\url{https://www.wcrp-climate.org/modelling-wgcm-mip-catalogue/modelling-wgcm-cmip6-endorsed-mips}}
+and is described in detail in \cite{Haarsma16}. The key distinguishing feature of HighResMIP is that it is the only MIP that will generate model simulations with sufficient horizontal model resolution (0.25${}^\circ$) to enable tracking of tropical cyclones and hurricanes.  As we and others have conclusively demonstrated \cite{Wehner15,Wehner14,Wehner10}, the lower horizontal resolutions of typically ${\cal O}(1^\circ)$ employed for the other MIPs is insufficient to reproduce the hurricane, cyclone, atmospheric river, and extreme precipitation statistics of the current climate.
+
+\section{Potential Scientific Outcomes}
+\label{sec:outcomes}
+We would conduct this analysis in support of our CASCADE SFA, the university-funded RGCM investigators, and ultimately the global climate community.
+
+Novel climate science features:
+\begin{enumerate}
+\item First community resource for feature tracking using CMIP output
+\item First such resource suitable for following hurricanes, enabled by the 25-km resolution of models in HighResMIP
+\item First perturbed-detection-parameter ensemble of extreme weather
+\item First community resource of extreme weather detected using both conventional and machine-learning-based algorithms.
+\end{enumerate}
+
+Novel computational-science features:
+\begin{enumerate}
+\item One of the first tests of the ESGF-node software instantiated in Docker, a container management system often used for deploying web applications.  (This should considerably simplify installation and maintenance of the ESGF node capability at NERSC.)
+\item A proof-of-principle test of combining ESGF-managed data-stores with DOE's leadership computing to provide a value-added climate product under an ESGF node at NERSC with relatively modest  storage requirements. This would be a step toward building a climate analysis superfacility.
+\item A proof-of-principle test of generating a value-added climate product using a 1~PB store of raw model output collected on site at NERSC via ultrafast networks.
+\end{enumerate}
+
+\section{Configuration of the HighResMIP Analytical Pipeline}
+\label{sec:configuration}
+
+% Define block styles
+\tikzstyle{decision} = [diamond, draw, fill=blue!20, 
+    text width=4.5em, text badly centered, node distance=3cm, inner sep=0pt]
+\tikzstyle{block} = [rectangle, draw, fill=blue!20, 
+    text width=5em, text centered, rounded corners, minimum height=4em,node distance=3cm]
+\tikzstyle{line} = [draw, -latex']
+\tikzstyle{cloud} = [draw, ellipse,fill=red!20, node distance=3cm,
+    minimum height=2em]
+
+\begin{tikzpicture}[node distance = 2.5cm, auto]
+   \node[cloud] (HighResMIP) {HighResMIP};
+   \node[block, right of=HighResMIP] (repository){Local Repository};
+   \node[cloud, right of=repository] (ESNet) {ESNet};
+   \node[block, right of=ESNet] (TECA) {TECA run at NERSC};
+   \node[block, right of=TECA] (storage) {Project Storage for CASCADE};
+   \node[cloud, right of=storage] (ESGF) {ESGF};   
+   \path[line] (HighResMIP) -- (repository);
+   \path[line] (repository) -- (ESNet) ;
+   \path[line] (ESNet) -- (TECA) ;
+   \path[line] (TECA) -- (storage) ;   
+   \path[line] (storage) -- (ESGF);
+\end{tikzpicture}
+
+\section{Resource requirements for the HighResMIP Analytical Pipeline}
+%\footnote{Need to reconcile with \url{http://clipc-services.ceda.ac.uk/dreq/tab01_3_3.html} 
+%and with the GMD HighResMIP paper cited above.}
+\label{sec:requirements}
+\subsection{Volume of HighResMIP data}
+\label{ssec:rawstorage}
+
+For a 1-degree atmospheric model, we compute the data volume $V_1$ of a single 1-level field sampled hourly in single-floating-point (4-byte) numerical precision as follows:
+\begin{eqnarray*}
+N_{\hbox{lon}} & = & 360 \quad \hbox{(Number of longitudes)} \\
+N_{\hbox{lat}} & = & 180 \quad \hbox{(Number of latitudes)} \\
+N_{\hbox{yrs}} & = & 150 \quad \hbox{(Total number of years of integration with prescribed SSTs, table~\ref{tab:transfer})} \\
+N_{\hbox{day}} & = & 365 \quad \hbox{(Number of days in year)} \\
+N_{\hbox{hrs}} & = & 24\phantom{9} \quad \hbox{(Number of hours in a day)} \\
+N_{\hbox{fpp}} & = & 4\phantom{99} \quad \hbox{(Floating point precision, in bytes)} \\
+V_1 & = & N_{\hbox{lon}} \times N_{\hbox{lat}} \times N_{\hbox{yrs}} \times N_{\hbox{day}} \times N_{\hbox{hrs}} \times N_{\hbox{fpp}} \\
+& = & 341\ \hbox{GB}
+\end{eqnarray*}
+{\textit{(Note that we are assuming that the data volume associated with metadata may be neglected.)}}
+
+The product of $V_1$ and $M_{\hbox{tot}}$ (table~\ref{tbl:models}) gives the total data volume  of a single 1-level field sampled hourly in single-floating-point (4-byte) numerical precision
+{\textbf{summed across all models at their highest target resolutions}}.  The total data volumes for each phenomenon $P$ we wish to analyze that requires $N_P$ variables $x_i$, as shown in Table~\ref{tab:vars}, indexed by $i=1 \ldots N_P$ with
+number of levels $N_{\hbox{lev}}(x_i)$ and intervals in hours between samples of $N_{\hbox{int}}(x_i)$ are then given by:
+\begin{eqnarray*}
+V(P) & = & V_1 \times M_{\hbox{tot}} \times \sum_i^{N_P} \frac{N_{\hbox{lev}}(x_i)}{N_{\hbox{int}}(x_i)}\\
+\end{eqnarray*}
+For TCs, ARs, and Extremes, these volumes work out to be:
+\begin{eqnarray*}
+V(\hbox{TC}) & = & V_1 \times M_{\hbox{tot}} \times \phantom{1}6.33 = 615\ \hbox{TB}\\
+V(\hbox{AR}) & = & V_1 \times M_{\hbox{tot}} \times \phantom{1}1.66 = 162\ \hbox{TB}\\
+V(\hbox{Extreme}) & = & V_1 \times M_{\hbox{tot}} \times \phantom{1}2.00 =  194\ \hbox{TB}\\*[5pt]
+\sum_P\,V(P) & = & V_1 \times M_{\hbox{tot}} \times 10.00 = 972\ \hbox{TB} 
+\end{eqnarray*}
+\textbf{Therefore the total data volume is less than 1~PB.}
+
+\subsection{Computational resources for the analysis}
+\label{ssec:allocation}
+
+For a 1-degree atmospheric model, the compute time required by TECA to track features in 1~year of model output is:
+\begin{eqnarray*}
+C_1 = 200\ \hbox{PE-hours}
+\end{eqnarray*}
+where PE stands for ``processor element'' (e.g., a CPU).  
+Since TECA exhibits nearly ideal weak scaling with respect to resolution, the compute time required for the multi-model high-resolution ensemble is:   
+\begin{eqnarray*}
+M_1  = 200 \times M_{\hbox{tot}} = 57,000\ \hbox{PE-hours}
+\end{eqnarray*}
+Hence the total cost of feature tracking in 150~years of fixed-SST high-resolution simulation (Table~\ref{tab:transfer}) is:
+\begin{eqnarray*}
+T  = M_1 \times N_{\hbox{yrs}} = 8,550,000\ \hbox{PE-hours}
+\end{eqnarray*}
+If we assume that the total number of perturbed-parameter and structural variants of the tracking code are less or equal to $N_{\hbox{PPE}} \le 64$, the total number of processor hours is bounded above by:
+\begin{eqnarray*}
+T_{\hbox{tot}}  = N_{\hbox{PPE}} \times  T \le 547,200,000\ \hbox{PE-hours}
+\end{eqnarray*}
+\textbf{Therefore the total computational allocation request will be bounded above by 550M PE-hours.}
+
+\subsection{Establishment and operation of an ESGF node at NERSC}
+\label{ssec:ESGF}
+
+In order to support the needs of both the HighResMIP project, and the broader ESS mission we propose building an integrated data pipeline that enables data replication, publication and dissemination of ESS data, using the ESGF framework. In order to support this work, we would like to request funding for approximately 1 FTE under the Data Science and Technology Department (Computational Research Division) at LBNL. 
+This position will be responsible for:
+\begin{itemize}
+\item Software development and systems integration tasks to ensure successful deployment of an ESGF node at NERSC. 
+\item A data publication system that supports the needs of users that wish to publish data to this ESGF node.
+\item Data replication, data dissemination and other data management processes to support high performance data transfers between NERSC and other ESGF facilities.
+\item Successful integration of this service into the ESGF federation
+\end{itemize}
+We propose doing this as part of a 3 year plan that includes the following 
+
+\vspace*{0.25truecm}
+
+\noindent \textbf{Year 1:}
+\begin{enumerate}
+\item Develop a data replication system that utilizes existing high performance networking infrastructure to move HighResMIP data from ESGF sites to NERSC. This will include: 
+\begin{enumerate}
+\item Define networking requirements and work with ESnet to test high-speed network bandwidth. 
+\item Build an automated data transfer pipeline between ESGF and NERSC using tools like Globus and REST API services. 
+\end{enumerate}
+\item Create a local archival system that manages the NERSC copy of the data to be used in simulations. This system will seamlessly manage data across different storage layers. 
+\item Build and deploy an ESGF node at NERSC (under the NERSC “SPIN” Docker infrastructure) that can serve up data products from simulations run at NERSC. This node will be able to participate in the broader ESGF federation.
+\item Act as a liaison to the ESGF community, including attending ESGF meetings and telecons, to ensure that software is following ESGF practices and well-integrated into the federation. This may also include contributing patches to ESGF where needed.
+\end{enumerate}
+\noindent \textbf{Year 2/3:}
+\begin{enumerate}
+\item Continue to build upon and support activities from Year 1.
+\item Create a data publication workflow to allow automated publication of data from the simulation results into the ESGF node. Initially this will support HighResMIP use cases, but this should also be extensible to other ESS projects at NERSC that wish to publish data to the ESGF node.
+\item Integration of ~2PB sponsored storage space in the NERSC project/community file system into the data into the data management system . 
+\item Work with ESGF on software integration and data replication to ensure that the system works smoothly in the ESGF federation.
+\item Continue to maintain and evolve the ESGF software stack to ensure support for newer capabilities, including high performance data transfer tools like Globus and integration of REST APIs to communicate with other services. 
+\item Create and manage shareable Docker containers for the various ESGF components into a deployed system, including authentication, ingest, data indexing, search and data dissemination.
+\end{enumerate}
+
+\bibliography{HighResMIP}
+\bibliographystyle{infocomp} 
+
+\newpage
+\begin{table}[h]
+\centering
+\begin{tabular}{|r|r|r|r|l|}
+\hline
+Tier & Run Name & Run Description & Length & Notes \\
+ & & & (years) & \\
+\hline
+{\hl{1}} & {\hl{highresSST-present}} & {\hl{Forced atmosphere from 1950--2014}}  & {\hl{65}} & {\hl{Historical AMIP-style integration}} \\
+2 & control-1950 & Coupled pre-industrial control & 100 & Spin-up and initial conditions \\
+& & & & for hist-1950  \\
+2 & hist-1950 & Coupled simulation from 1950--2014 & 65 & Historical CMIP-style integration \\
+2 & highres-future & Coupled simulation from 2015--2050 & 35 & Future simulation based \\
+& & & & on SSP-x scenario \\
+{\hl{3}} & {\hl{highresSST-future}} & {\hl{Forced atmosphere from 2015-2050}}    & {\hl{35}} & {\hl{Future AMIP-style integration}} \\
+{\hl{3'}} & {\hl{highresSST-future}} & {\hl{Forced atmosphere from 2051-2100}}   & {\hl{50}} & {\hl{Optional continuation of}} \\ 
+& & & & {\hl{future AMIP-style integration}} \\
+\hline
+\end{tabular}
+\caption{\label{tab:transfer} Description of the HighResMIP runs we propose to analyze, highlighted in yellow.  Data extracted from Figure~1 and $\S$3 of in \cite{Haarsma16}.  We do not plan to analyze coupled integrations due to large spread in TC/ETC statistics due to diverse SST projections.  Longer coupled control (100 years vs. 50 years originally proposed) has been verified from current HighResMIP website at \url{http://collab.knmi.nl/project/highresmip/}.}
+\end{table}
+
+\begin{table}[h]
+\centering
+\begin{tabular}{|l|l|c|r|r|r|}
+\hline
+Model & Institute & Highest Atmospheric & CMIP6  \\
+& & Resolution & Multiplier$\dagger$ \\
+\hline
+% 4200 R.J. Haarsmaet al.:High Resolution Model IntercomparisonProjectfor CMIP6 Appendix A: Participating models in HighResMIP 
+%
+%Table A1. Model details from groupsexpressing intention to participate in at leastTier1 simulations, together with the potential model resolutions (if known/available, blank if not). 
+AWI-CM & AWI & T255($\sim$ 50 km)   & 4.8 \\
+BCC-CSM2-HR & BCC & T266($\sim$ 45 km)  & 5.9 \\
+BESM & INPE & T233($\sim$ 60 km) & 3.3  \\
+CAM5 & LBNL & 28 km & 19.2 \\
+CAM6 & NCAR & 28km & 15.3 \\
+CMCC & CEMCC &  25km & 19.2 \\
+CNRM-CM6 & CERFACS & T359($\sim$ 35 km) & 9.8 \\
+EC-Earth & SMHI, KNMI, BSC,  & T511/T799($\sim$ 40/25 km) & 19.2 \\
+& and 24 other institutes & & \\
+FGOALS & LASG, IAP, CAS & 25km & 19.2 \\
+GFDL & GFDL & -- & 1 \\
+HadGEM3-GC3 & UKMO/HC &  25km & 19.2 \\
+ INMCM-5H & INM & $0.3^\circ \times 0.4^\circ$ &  8.3 \\
+ IPSL-CM6 & IPSL & $0.25^\circ$ & 16.0 \\
+ MPAS-CAM & PNNL &  30--50km & 13.3 \\
+ MIROC6-CGCM &AORI / U. Tokyo/ & T213  & ?? \\
+ & JAMSTEC/NIES & & \\
+ NICAM & JAMSTEC/AORI/  &14km (short term) 61.3 & \\
+ & U. Tokyo/RIKEN/AICS  & & \\
+ MPI-ESM & MPI &T255 ($\sim$50 km) & 4.8 \\
+ MRI-AGCM3 & MRI & TL959 ($\sim$ 20km) & 30.0 \\
+ NorESM & NCSC & $0.25^\circ$ & 16.0 \\
+ \hline
+ Total & & & 284.8 \\
+ Multiplier & & & $+$  1 (GFDL) \\
+ $M_{\hbox{tot}}$ & & & $+$ ?? (MIROC) \\
+ \hline
+\end{tabular}
+ \caption{\label{tbl:models} Model details from groups expressing intention to participate in at least Tier1 simulations, together with the potential model resolutions (if known/available, blank if not). Data extracted from table~A1 in \cite{Haarsma16}.
+\\*[4pt]
+\noindent $\dagger$ Ratio of volume of specific model's data to volume of equivalent $1^\circ$ model with same number of levels.
+ }
+ \tbd{ Need to check on EC-Earth estimates -- the relationship between triangular truncation and lateral resolution is inconsistent with that of other models.  Note also need to update GFDL's estimate.}
+\end{table}
+
+\begin{table}[h]
+\begin{tabular}{|r|r|l|l|l|c|c|}
+\hline
+Phenom. & Var. & Description & Fields we use & MIP Table &  Levels & Interval \\
+        & $x$     &             &               &           & $N_{\hbox{lev}}(x)$ & $N_{\hbox{int}}(x)$ \\
+\hline
+TC & pr & Total Precipitation & pr & E1hr/Esubhr  & 1  & 1 \\
+TC & psl & Sea-level pressure & psl & 6hrPlevPt  & 1  & 6 \\
+TC & ta7h & 7-level atmospheric temperature & ta(250mb),  & 6hrPlevPt  & 7  & 6 \\
+   &      &                                 & ta(500mb)   &            &    &   \\
+TC & tas & Surface temperature & tas & 6hrPlevPt  & 1  & 6 \\
+TC & ua7h & 7-level zonal wind speed & ua(600mb) & 6hrPlevPt  & 7  & 6 \\
+   &      &                          & ua(850mb) &            &    &   \\
+TC & uas & Surface zonal wind speed & uas & 6hrPlevPt  & 1  & 6 \\
+TC & va7h & 7-level meridional wind speed & va(600mb) & 6hrPlevPt  & 7  & 6 \\
+   &      &                               & va(850mb) &            &    &  \\
+TC & vas & Meridional zonal wind speed & vas & 6hrPlevPt  & 1  & 6 \\
+TC & zg7h & 7-level geopotential height & zg(250mb), & 6hrPlevPt & 7 & 6 \\
+   &      &                             & zg(925mb) &            &   &   \\
+\hline
+AR & prw & Column precipitable water & prw & E3hr  & 1  & 3 \\
+AR & huss & Surface specific humidity & huss &  6hrPlevPt & 1  & 6 \\
+AR & hus7h & 7-level specific humidity & hus$(p)$ &  6hrPlevPt & 7  & 6 \\
+\hline
+Extreme & pr & Total precipitation & pr & E1hr/Esubhr  & 1  & 1 \\
+Extreme & tas & Surface air temp. & tas & Esubhr & 1 & 1 \\
+\hline
+\end{tabular}
+\caption{\label{tab:vars} The variables we propose to transfer. Notes: (1. variables pr for TCs and prw for ARs were not requested by HighResMIP for inclusion in the standard 6-hour tables,  but
+were requested by HighResMIP in special, extended (E-type) higher-frequency tables.  (2. Daily mean precipitation, minimum surface air temperature, and maximum surface air temperature were not requested by HighResMIP.  Hence these values have to be calculated from sub-hourly to hourly data from the same special E-type tables.  (3. The request for TC includes the data, with slight modifications to pressure levels, required for  Paul and Colin’s tempestextremes package. (4. While a 3-level ta variable would be sufficient for our purposes, HighResMIP only requested a 7-level profile of atmospheric temperature for the 6hrPlevPT tables. (5. For ARs, we will compute a purely advective integrated vapor transport (IVT) by combining the surface and 7-level specific humidity (huss and hus7h) with the corresponding zonal (uas and ua7h) and meridional (vas and va7h) wind speeds to compute $\nabla\cdot(\vec{v}q)$ and then integrating over pressure.
+}
+\tbd{5. There appears to be discrepancy between the CMOR variable tables at \url{http://clipc-services.ceda.ac.uk/dreq/index/CMORvar.html} and the spreadsheets of variable requests I've downloaded for the experiments.  Specifically, the pr is available in both 3hr and E3hr tables in the spreadsheets, and the daily-mean pr and the daily tasmin and tasmax variables appear to be in the day tables in the spreadsheets.  The CMOR variable tables and the spreadsheets are consistent for prw and tnhus variables for ARs (only appear in E3hr and Esubhr).    ta7h does not appear in 6hrPlevPt, but 3-level version does!!  It's also not clear if 6hrPlevPt (instantaneous 6-hourly data) is still available? Need to resolve these discrepancies.}
+\end{table}
+
+%\subsection{Transfer of HighResMIP data to NERSC for analysis}
+%\label{ssec:transfer}
+
+%\subsection{Computational resources for the analysis}
+%\label{ssec:allocation}
+
+%\subsection{Storage required for results of analysis}
+%\label{ssec:productstorage}
+
+                     
+\end{document} 
